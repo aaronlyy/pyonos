@@ -1,4 +1,7 @@
-<img align="center" src=".\media\logo.png" alt="banner" width=80%>
+
+<p align="center">
+  <img src=".\media\logo.png" alt="banner" width=80%>
+</p>
 
 <h3 align="center"> Wrapper around the IONOS DNS, Domains & SSL API</h3>
 
