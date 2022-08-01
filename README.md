@@ -61,6 +61,14 @@ pprint(result)
 
 ### pyonos.Ssl (WORK IN PROGRESS)
 
+## Available methods
+
+- Dns
+  - get_zones()
+  - get_zone(id)
+  - patch_zone(records)
+  - put_zone(records)
+
 ## About
 
 Made with ♥ by [aaronlyy](https://github.com/aaronlyy) for [krotesq](https://github.com/krotesq)
