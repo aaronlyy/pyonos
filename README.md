@@ -1,4 +1,4 @@
-# pyonos
+<img align="center" src=".\media\logo.png" alt="banner">
 
 Wrapper around the IONOS DNS, Domains & SSL API
 
@@ -53,9 +53,9 @@ pprint(result)
 
 ```
 
-### pyonos.Domains
+### pyonos.Domains (WORK IN PROGRESS)
 
-### pyonos.Ssl
+### pyonos.Ssl (WORK IN PROGRESS)
 
 ## About
 
