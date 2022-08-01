@@ -1,18 +1,19 @@
-# ionos
-Wrapper around the Ionos DNS, Domains & SSL API
+# pyonos
+
+Wrapper around the IONOS DNS, Domains & SSL API
 
 ## Installation
 
 ### Install using pip
 
 ```
-pip install ionos
+pip install pyonos
 ```
 
 ### Clone the repository
 
 ```
-git clone https://github.com/aaronlyy/ionos
+git clone https://github.com/aaronlyy/pyonos
 ```
 
 ## Quickstart
@@ -23,10 +24,10 @@ IONOS exposes [3 different API's](https://developer.hosting.ionos.de/docs).
 - Domains
 - Ssl
 
-Every API has its corresponding & same name class that can be imported from ionos.
+Every API has its corresponding & same name class that can be imported from pyonos.
 
 ```py
-from ionos import Dns, Domains, Ssl
+from pyonos import Dns, Domains, Ssl
 ```
 
 Similary every API endpoint has its own corresponding method. Here are some of them.
@@ -42,7 +43,7 @@ Every class needs to be autheticated using a [prefix and a secret](https://devel
 #### .get_zones() : Get all available zones.
 
 ```py
-from ionos import Dns
+from pyonos import Dns
 from pprint import pprint
 
 dns = Dns("prefix", "secret")
@@ -52,9 +53,9 @@ pprint(result)
 
 ```
 
-### ionos.Domains
+### pyonos.Domains
 
-### ionos.Ssl
+### pyonos.Ssl
 
 ## About
 
