@@ -33,7 +33,7 @@ Similary every API endpoint has its own corresponding method. Here are some of t
 
 ### Info
 
-Every class needs to be autheticated using a prefix and a secret.
+Every class needs to be autheticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
 
 ### ionos.Dns
 
