@@ -1,2 +1,2 @@
 # ionos
-Wrapper around the Ionos DNS API
+Wrapper around the Ionos DNS, Domains & SSL API's
