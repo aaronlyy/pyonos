@@ -1,6 +1,6 @@
 <img align="center" src=".\media\logo.png" alt="banner">
 
-<h3 align="center"> Wrapper around the IONOS DNS, Domains & SSL API</h3>
+
 
 ## Installation
 
