@@ -1,6 +1,6 @@
 import requests
 
-class Ionos:
+class Dns:
     def __init__(self, prefix: str, secret: str) -> None:
         self._base = "https://api.hosting.ionos.com/dns/v1"
         self._headers = {"X-API-KEY": f"{prefix}.{secret}"}
