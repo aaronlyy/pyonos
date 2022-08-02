@@ -29,7 +29,7 @@ IONOS exposes [3 different API's](https://developer.hosting.ionos.de/docs).
 - Ssl
 
 Every API has its corresponding & same name class that can be imported from pyonos.
-Every class needs to be autheticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
+Every class needs to be authenticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
 
 ```py
 from pyonos import Dns, Domains, Ssl
