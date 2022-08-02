@@ -5,7 +5,7 @@
 
 <h3 align="center"> Wrapper around the IONOS DNS, Domains & SSL API</h3>
 
-https://img.shields.io/github/license/aaronlyy/pyonos?style=flat-square
+![GitHub](https://img.shields.io/github/license/aaronlyy/pyonos?style=flat-square)
 
 
 ## Installation
