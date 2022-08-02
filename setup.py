@@ -29,7 +29,7 @@ with open("README.md", "r") as f:
 # --- setting up ---
 setup(
     name="pyonos",
-    version='0.1.0',
+    version='0.1.1',
     author="aaronlyy (Aaron Levi)",
     author_email="<aaronlevican@gmail.com>",
     url="https://github.com/aaronlyy/pyonos",
