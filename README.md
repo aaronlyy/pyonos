@@ -8,7 +8,6 @@
 <p align="center">
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/aaronlyy/pyonos?style=flat">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aaronlyy/pyonos?style=flat">
-  <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pyonos?style=flat">
   <img alt="GitHub" src="https://img.shields.io/github/license/aaronlyy/pyonos?style=flat">
 </p>
 
