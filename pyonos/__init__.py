@@ -11,10 +11,6 @@ if __name__ == "__main__":
     if exists("./pyonos/config.py"):
         from config import PREFIX, SECRET
 
-        dns = Dns(PREFIX, SECRET)
-        zone_id = dns.get_zones()[1][0]["id"]
-        print(zone_id)
-
         records = [
             {
                 "name": "cuminsi.de",
@@ -26,10 +22,20 @@ if __name__ == "__main__":
             }
         ]
 
-        # pprint(dns.patch_zone(zone_id, data=record))
+        record = {
+                "name": "cuminsi.de",
+                "type": "TXT",
+                "content": "by7984375e",
+                "ttl": 3600,
+                "prio": 0,
+                "disabled": False
+            }
 
-        pprint(dns.post_records(zone_id,records=records))
-
+        dns = Dns(PREFIX, SECRET)
+        zone_id = dns.get_zones()[1][0]["id"]
+        record_id = dns.get_zone(zone_id)[1]["records"][0]["id"]
+        # pprint(dns.post_records(zone_id, records))
+        pprint(dns.put_record(zone_id, record_id, record))
 
     else:
         print("missing config.py")

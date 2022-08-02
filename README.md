@@ -29,16 +29,16 @@ IONOS exposes [3 different API's](https://developer.hosting.ionos.de/docs).
 - Ssl
 
 Every API has its corresponding & same name class that can be imported from pyonos.
+Every class needs to be autheticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
 
 ```py
 from pyonos import Dns, Domains, Ssl
 ```
 
-Similary every API endpoint has its own corresponding method. Here are some of them.
+Similary every API endpoint has its own corresponding method. Methods always return a tuple containing two items:
 
-### Info
-
-Every class needs to be autheticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
+- HTTP Status Code
+- JSON Response (if not available: None)
 
 ### pyonos.Dns
 
@@ -61,14 +61,22 @@ pprint(result)
 
 ### pyonos.Ssl (WORK IN PROGRESS)
 
-## Available methods/endpoints
+## Currently supported methods/endpoints
 
-- Dns
-  - get_zones
-  - get_zone
-  - patch_zone
-  - put_zone
+Method names are a combination of the http method used and their category.
+
+- Dns ([Official API Docs](https://developer.hosting.ionos.de/docs/dns))
+  - Zones
+    - get_zones: Returns list of customer zones.
+    - get_zone: Returns a customer zone.
+    - patch_zone: Replaces all records of the same name and type with the ones provided.
+    - put_zone: Replaces all records in the zone with the ones provided.
+  - Records
+    - post_records: Creates records for a customer zone.
+    - get_record: Returns the record from the customer zone with the mentioned id.
+    - delete_record: Delete a record from the customer zone.
+    - put_record: Update a record from the customer zone.
 
 ## About
 
-Made with ♥ by [aaronlyy](https://github.com/aaronlyy) for [krotesq](https://github.com/krotesq)
+Made with ♥ by [aaronlyy](https://github.com/aaronlyy)

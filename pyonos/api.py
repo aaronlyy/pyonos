@@ -1,4 +1,3 @@
-from wsgiref import headers
 import requests
 
 class Dns:
@@ -31,6 +30,13 @@ class Dns:
         elif method == "post":
             response = requests.post(url, json=data, headers=self._headers)
             return (response.status_code, response.json())
+
+        elif method == "delete":
+            response = requests.delete(url, headers=self._headers)
+            if response.status_code == 200:
+                return (response.status_code, None)
+            else:
+                return (response.status_code, response.json())
 
         else:
             return (None, None)
@@ -71,7 +77,7 @@ class Dns:
             data (list)
 
         Returns:
-            tuple: (status_code, None) (200)
+            tuple: (status_code, None) [200]
         """
         return self._request("PATCH", f"/zones/{zone_id}", data=records)
 
@@ -83,7 +89,7 @@ class Dns:
             data (list)
 
         Returns:
-            tuple: (status_code, None) (200)
+            tuple: (status_code, None) [200]
         """
         return self._request("PUT", f"/zones/{zone_id}", data=records)
 
@@ -96,6 +102,43 @@ class Dns:
             records (list): List of record dictionaries
 
         Returns:
-            tuple: (status_code, json) (201)
+            tuple: (status_code, json) [201]
         """
-        return self._request("post", f"/zones/{zone_id}/records", data=records)
+        return self._request("POST", f"/zones/{zone_id}/records", data=records)
+
+    def get_record(self, zone_id: str, record_id: str) -> tuple:
+        """Returns the record from the customer zone with the mentioned id.
+
+        Args:
+            zone_id (str): The id of the customer zone.
+            record_id (str): The id of the record.
+
+        Returns:
+            tuple: (status_code, json)
+        """
+        return self._request("GET", f"/zones/{zone_id}/records/{record_id}")
+
+    def delete_record(self, zone_id: str, record_id: str) -> tuple:
+        """Delete a record from the customer zone.
+
+        Args:
+            zone_id (str): The id of the customer zone.
+            record_id (str): The id of the record.
+
+        Returns:
+            tuple: The id of the record.
+        """
+        return self._request("DELETE", f"/zones/{zone_id}/records/{record_id}")
+    
+    def put_record(self, zone_id: str, record_id: str, record: dict) -> tuple:
+        """Update a record from the customer zone.
+
+        Args:
+            zone_id (str): The id of the customer zone.
+            record_id (str): The id of the record.
+            record (dict): Updated record.
+
+        Returns:
+            tuple: (status_code, json)
+        """
+        return self._request("PUT", f"/zones/{zone_id}/records/{record_id}", data=record)
