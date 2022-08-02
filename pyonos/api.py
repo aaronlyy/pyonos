@@ -59,7 +59,7 @@ class Dns:
         }
         return self._request("GET", f"/zones/{zone_id}", params=params)
 
-    def patch_zone(self, zone_id: int, data: list) -> tuple:
+    def patch_zone(self, zone_id: int, records: list) -> tuple:
         """Replaces all records of the same name and type with the ones provided.
 
         Args:
@@ -69,9 +69,9 @@ class Dns:
         Returns:
             tuple: (status_code, None) (200)
         """
-        return self._request("PATCH", f"/zones/{zone_id}", data=data)
+        return self._request("PATCH", f"/zones/{zone_id}", data=records)
 
-    def put_zone(self, zone_id: int, data: list) -> tuple:
+    def put_zone(self, zone_id: int, records: list) -> tuple:
         """Replaces all records in the zone with the ones provided.
 
         Args:
@@ -81,4 +81,6 @@ class Dns:
         Returns:
             tuple: (status_code, None) (200)
         """
-        return self._request("PUT", f"/zones/{zone_id}", data=data)
+        return self._request("PUT", f"/zones/{zone_id}", data=records)
+
+    # --- RECORDS ---
