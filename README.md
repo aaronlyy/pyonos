@@ -40,7 +40,7 @@ Similary every API endpoint has its own corresponding method. Here are some of t
 
 Every class needs to be autheticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
 
-### ionos.Dns
+### pyonos.Dns
 
 [IONOS DNS Documentation](https://developer.hosting.ionos.de/docs/dns)
 
