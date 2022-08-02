@@ -1,7 +1,8 @@
 
 <p align="center">
   <img src=".\media\logo.png" alt="banner" width=65%>
-  ![GitHub](https://img.shields.io/github/license/aaronlyy/pyonos?style=flat-square)
+  <br>
+  <img alt="GitHub" src="https://img.shields.io/github/license/aaronlyy/pyonos?style=flat-square">
 </p>
 
 <h3 align="center"> Wrapper around the IONOS DNS, Domains & SSL API</h3>
