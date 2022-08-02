@@ -1,13 +1,15 @@
 
 <p align="center">
   <img src=".\media\logo.png" alt="banner" width=65%>
-  <br>
+</p>
+
+<h3 align="center"> Wrapper around the IONOS DNS, Domains & SSL API</h3>
+
+<p align="center">
   <img alt="GitHub" src="https://img.shields.io/github/license/aaronlyy/pyonos?style=flat-square">
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/aaronlyy/pyonos?style=flat-square">
   <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pyonos?style=flat-square">
 </p>
-
-<h3 align="center"> Wrapper around the IONOS DNS, Domains & SSL API</h3>
 
 ## Installation
 
