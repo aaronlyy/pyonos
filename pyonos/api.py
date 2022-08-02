@@ -27,6 +27,10 @@ class Dns:
                 return (response.status_code, None)
             else:
                 return (response.status_code, response.json())
+        
+        elif method == "post":
+            response = requests.post(url, json=data, headers=self._headers)
+            return (response.status_code, response.json())
 
         else:
             return (None, None)
@@ -84,3 +88,14 @@ class Dns:
         return self._request("PUT", f"/zones/{zone_id}", data=records)
 
     # --- RECORDS ---
+    def post_records(self, zone_id: str, records: list) -> tuple:
+        """Creates records for a customer zone.
+
+        Args:
+            zone_id (str)
+            records (list): List of record dictionaries
+
+        Returns:
+            tuple: (status_code, json) (201)
+        """
+        return self._request("post", f"/zones/{zone_id}/records", data=records)
