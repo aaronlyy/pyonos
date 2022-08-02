@@ -35,7 +35,7 @@ Every class needs to be autheticated using a [prefix and a secret](https://devel
 from pyonos import Dns, Domains, Ssl
 ```
 
-Similary every API endpoint has its own corresponding method. Methods always return a tuple containing two items:
+Similarly, every API endpoint has its own corresponding method. Methods always return a tuple containing two items:
 
 - HTTP Status Code
 - JSON Response (if not available: None)
