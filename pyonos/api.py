@@ -53,7 +53,7 @@ class Dns:
         """
         return self._request("GET", "/zones")
 
-    def get_zone(self, zone_id: str, suffix: str = None, record_name: str = None, record_type: str = None) -> tuple:
+    def get_zone(self, zone_id: str, suffix: str = None, record_name: str = None, record_type: str = None) -> PyonosResponse:
         """Returns a customer zone.
 
         Args:
@@ -63,7 +63,7 @@ class Dns:
             record_type (str, optional): A comma-separated list of record types that should be included.
 
         Returns:
-            tuple: (status_code, json)
+            PyonosResponse
         """
         params = {
             "suffix": suffix,
@@ -72,7 +72,7 @@ class Dns:
         }
         return self._request("GET", f"/zones/{zone_id}", params=params)
 
-    def patch_zone(self, zone_id: int, records: list) -> tuple:
+    def patch_zone(self, zone_id: int, records: list) -> PyonosResponse:
         """Replaces all records of the same name and type with the ones provided.
 
         Args:
@@ -80,11 +80,11 @@ class Dns:
             data (list)
 
         Returns:
-            tuple: (status_code, None) [200]
+            PyonosResponse
         """
         return self._request("PATCH", f"/zones/{zone_id}", data=records)
 
-    def put_zone(self, zone_id: int, records: list) -> tuple:
+    def put_zone(self, zone_id: int, records: list) -> PyonosResponse:
         """Replaces all records in the zone with the ones provided.
 
         Args:
@@ -92,7 +92,7 @@ class Dns:
             data (list)
 
         Returns:
-            tuple: (status_code, None) [200]
+            PyonosResponse
         """
         return self._request("PUT", f"/zones/{zone_id}", data=records)
 
@@ -105,11 +105,11 @@ class Dns:
             records (list): List of record dictionaries
 
         Returns:
-            tuple: (status_code, json) [201]
+            PyonosResponse
         """
         return self._request("POST", f"/zones/{zone_id}/records", data=records)
 
-    def get_record(self, zone_id: str, record_id: str) -> tuple:
+    def get_record(self, zone_id: str, record_id: str) -> PyonosResponse:
         """Returns the record from the customer zone with the mentioned id.
 
         Args:
@@ -117,11 +117,11 @@ class Dns:
             record_id (str): The id of the record.
 
         Returns:
-            tuple: (status_code, json)
+            PyonosResponse
         """
         return self._request("GET", f"/zones/{zone_id}/records/{record_id}")
 
-    def delete_record(self, zone_id: str, record_id: str) -> tuple:
+    def delete_record(self, zone_id: str, record_id: str) -> PyonosResponse:
         """Delete a record from the customer zone.
 
         Args:
@@ -129,11 +129,11 @@ class Dns:
             record_id (str): The id of the record.
 
         Returns:
-            tuple: The id of the record.
+            PyonosResponse
         """
         return self._request("DELETE", f"/zones/{zone_id}/records/{record_id}")
     
-    def put_record(self, zone_id: str, record_id: str, record: dict) -> tuple:
+    def put_record(self, zone_id: str, record_id: str, record: dict) -> PyonosResponse:
         """Update a record from the customer zone.
 
         Args:
@@ -142,7 +142,7 @@ class Dns:
             record (dict): Updated record.
 
         Returns:
-            tuple: (status_code, json)
+            PyonosResponse
         """
         return self._request("PUT", f"/zones/{zone_id}/records/{record_id}", data=record)
 
@@ -154,7 +154,7 @@ class Dns:
             data (dict): Dynamic Dns configuration.
 
         Returns:
-            tuple: (status_code, json)
+            PyonosResponse
         """
         return self._request("POST", "/dyndns", data=data)
 
@@ -162,11 +162,11 @@ class Dns:
         """Disable Dynamic Dns. The following quota applies: 2 requests per minute per IP address.
 
         Returns:
-            tuple: (staus_code, None)
+            PyonosResponse
         """
         return self._request("DELETE", "/dyndns")
     
-    def put_dyndns(self, bulk_id: str, data: dict) -> tuple:
+    def put_dyndns(self, bulk_id: str, data: dict) -> PyonosResponse:
         """Update Dynamic Dns for bulk id. The following quota applies: 2 requests per minute per IP address.
 
         Args:
@@ -174,18 +174,18 @@ class Dns:
             data (dict): Dynamic Dns configuration.
 
         Returns:
-            tuple: (status_code, None) [200]
+            PyonosResponse
         """
         return self._request("PUT", f"/dyndns/{bulk_id}", data=data)
 
-    def delete_dyndns_bulk(self, bulk_id: str) -> tuple:
+    def delete_dyndns_bulk(self, bulk_id: str) -> PyonosResponse:
         """Disable Dynamic Dns for bulk id. The following quota applies: 2 requests per minute per IP address.
 
         Args:
             bulk_id (str): Dynamic Dns configuration identifier.
 
         Returns:
-            tuple: (status_code, None)
+            PyonosResponse
         """
         return self._request("DELETE", f"/dyndns/{bulk_id}")
 
