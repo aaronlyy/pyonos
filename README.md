@@ -91,7 +91,10 @@ Method names are a combination of the http method used and their category.
     - delete_record: Delete a record from the customer zone.
     - put_record: Update a record from the customer zone.
   - DynDns
-    - post_dyndns(): Activate dyndns for a group of domains.
+    - post_dyndns: Activate dyndns for a group of domains.
+    - delete_dyndns: Disable Dynamic Dns.
+    - put_dyndns: Update Dynamic Dns for bulk id.
+    - delete_dyndns_bulk: Disable Dynamic Dns for bulk id.
 
 ## About
 
