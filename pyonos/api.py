@@ -148,9 +148,40 @@ class Dns:
         """Activate Dynamic Dns for a bundle of (sub)domains. The url from response will be used to update the ips of the (sub)domains. The following quota applies: 2 requests per minute per IP address.
 
         Args:
-            data (dict): Dictionary containing domains & description
+            data (dict): Dynamic Dns configuration.
 
         Returns:
             tuple: (status_code, json)
         """
         return self._request("POST", "/dyndns", data=data)
+
+    def delete_dyndns(self) -> tuple:
+        """Disable Dynamic Dns. The following quota applies: 2 requests per minute per IP address.
+
+        Returns:
+            tuple: (staus_code, None)
+        """
+        return self._request("DELETE", "/dyndns")
+    
+    def put_dyndns(self, bulk_id: str, data: dict) -> tuple:
+        """Update Dynamic Dns for bulk id. The following quota applies: 2 requests per minute per IP address.
+
+        Args:
+            bulk_id (str): Dynamic Dns configuration identifier.
+            data (dict): Dynamic Dns configuration.
+
+        Returns:
+            tuple: (status_code, None) [200]
+        """
+        return self._request("PUT", f"/dyndns/{bulk_id}", data=data)
+
+    def delete_dyndns_bulk(self, bulk_id: str) -> tuple:
+        """Disable Dynamic Dns for bulk id. The following quota applies: 2 requests per minute per IP address.
+
+        Args:
+            bulk_id (str): Dynamic Dns configuration identifier.
+
+        Returns:
+            tuple: (status_code, None)
+        """
+        return self._request("DELETE", f"/dyndns/{bulk_id}")
