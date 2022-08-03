@@ -22,9 +22,9 @@ class PyonosResponse:
         s = f"[{self.status_code}]\n{self.json}"
         return s
 
-class Dns:
+class Api:
     def __init__(self, prefix: str, secret: str) -> None:
-        self._base = "https://api.hosting.ionos.com/dns/v1"
+        self._base = "https://api.hosting.ionos.com"
         self._headers = {"X-API-KEY": f"{prefix}.{secret}"}
 
     def _request(self, method: str, endpoint: str, params: dict = None, data: list = None) -> tuple:
@@ -43,6 +43,11 @@ class Dns:
         else:
             raise Exception
         return PyonosResponse(response)
+
+class Dns(Api):
+    def __init__(self, prefix: str, secret: str) -> None:
+        super().__init__(prefix, secret)
+        self._base = f"{self._base}/dns/v1"
 
     # --- ZONES ---
     def get_zones(self) -> PyonosResponse:
