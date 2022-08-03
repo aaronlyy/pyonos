@@ -25,24 +25,6 @@ pip install pyonos
 - Top-Level methods for easier use of the core methods
 - DynDns Update Function
 
-### List of available methods/endpoints
-
-Method names are a combination of the http method used and their category.
-
-- Dns ([Official API Docs](https://developer.hosting.ionos.de/docs/dns))
-  - Zones
-    - get_zones: Returns list of customer zones.
-    - get_zone: Returns a customer zone.
-    - patch_zone: Replaces all records of the same name and type with the ones provided.
-    - put_zone: Replaces all records in the zone with the ones provided.
-  - Records
-    - post_records: Creates records for a customer zone.
-    - get_record: Returns the record from the customer zone with the mentioned id.
-    - delete_record: Delete a record from the customer zone.
-    - put_record: Update a record from the customer zone.
-  - DynDns
-    - post_dyndns(): Activate dyndns for a group of domains.
-
 ## Quickstart
 
 IONOS exposes [3 different API's](https://developer.hosting.ionos.de/docs).
@@ -103,6 +85,24 @@ Work in progress
 ### pyonos.Ssl (WORK IN PROGRESS)
 
 Work in progress
+
+## List of all available methods/endpoints
+
+Method names are a combination of the http method used and their category.
+
+- Dns ([Official API Docs](https://developer.hosting.ionos.de/docs/dns))
+  - Zones
+    - get_zones: Returns list of customer zones.
+    - get_zone: Returns a customer zone.
+    - patch_zone: Replaces all records of the same name and type with the ones provided.
+    - put_zone: Replaces all records in the zone with the ones provided.
+  - Records
+    - post_records: Creates records for a customer zone.
+    - get_record: Returns the record from the customer zone with the mentioned id.
+    - delete_record: Delete a record from the customer zone.
+    - put_record: Update a record from the customer zone.
+  - DynDns
+    - post_dyndns(): Activate dyndns for a group of domains.
 
 ## About
 
