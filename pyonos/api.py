@@ -1,5 +1,27 @@
 import requests
 
+class PyonosResponse:
+    def __init__(self, response: requests.Response) -> None:
+        self._status_code = response.status_code
+        content_type = response.headers.get("Content-Type")
+
+        if "application/json" in content_type:
+            self._json = response.json()
+        else:
+            self._json = None
+    
+    @property
+    def status_code(self) -> int:
+        return self._status_code
+
+    @property
+    def json(self):
+        return self._json
+
+    def __str__(self) -> str:
+        s = f"[{self.status_code}]\n{self.json}"
+        return s
+
 class Dns:
     def __init__(self, prefix: str, secret: str) -> None:
         self._base = "https://api.hosting.ionos.com/dns/v1"
@@ -8,45 +30,26 @@ class Dns:
     def _request(self, method: str, endpoint: str, params: dict = None, data: list = None) -> tuple:
         method = method.lower()
         url = f"{self._base}{endpoint}"
-
         if method == "get":
             response = requests.get(url, params=params, headers=self._headers)
-            return (response.status_code, response.json())
-
         elif method == "patch":
             response = requests.patch(url, json=data, headers=self._headers)
-            if response.status_code == 200:
-                return (response.status_code, None)
-            else:
-                return (response.status_code, response.json())
-
         elif method == "put":
             response = requests.put(url, json=data, headers=self._headers)
-            if response.status_code == 200:
-                return (response.status_code, None)
-            else:
-                return (response.status_code, response.json())
-        
         elif method == "post":
             response = requests.post(url, json=data, headers=self._headers)
-            return (response.status_code, response.json())
-
         elif method == "delete":
             response = requests.delete(url, headers=self._headers)
-            if response.status_code == 200:
-                return (response.status_code, None)
-            else:
-                return (response.status_code, response.json())
-
         else:
-            return (None, None)
+            raise Exception
+        return PyonosResponse(response)
 
     # --- ZONES ---
-    def get_zones(self) -> tuple:
+    def get_zones(self) -> PyonosResponse:
         """Returns list of customer zones.
 
         Returns:
-            tuple: (status_code, json)
+            PyonosResponse
         """
         return self._request("GET", "/zones")
 
@@ -94,7 +97,7 @@ class Dns:
         return self._request("PUT", f"/zones/{zone_id}", data=records)
 
     # --- RECORDS ---
-    def post_records(self, zone_id: str, records: list) -> tuple:
+    def post_records(self, zone_id: str, records: list) -> PyonosResponse:
         """Creates records for a customer zone.
 
         Args:
@@ -185,3 +188,24 @@ class Dns:
             tuple: (status_code, None)
         """
         return self._request("DELETE", f"/dyndns/{bulk_id}")
+
+
+if __name__ == "__main__":
+    from pprint import pprint
+    dns = Dns("cbad9ce9a7494715b910c560afbe532f", "NvoLcf3uQsnLCttl3MrMZBbY9Y8QsrFayU8srf7lQkrjGvLzenwDp0ZhPPnx_fn042d6Rez3_tu71CiKuC7YFQ")
+    zones = dns.get_zones()
+    zone_id = zones.json[0]["id"]
+
+    new_record = [
+        {
+            "name": "cuminsi.de",
+            "type": "A",
+            "content": "1.2.3.147",
+            "ttl": 3600,
+            "prio": 0,
+            "disabled": False
+        }
+    ]
+
+    print(dns.post_records(zone_id, new_record))
+    print(dns.get_zone(zone_id, record_type="A"))
