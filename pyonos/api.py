@@ -188,24 +188,3 @@ class Dns:
             PyonosResponse
         """
         return self._request("DELETE", f"/dyndns/{bulk_id}")
-
-
-if __name__ == "__main__":
-    from pprint import pprint
-    dns = Dns("cbad9ce9a7494715b910c560afbe532f", "NvoLcf3uQsnLCttl3MrMZBbY9Y8QsrFayU8srf7lQkrjGvLzenwDp0ZhPPnx_fn042d6Rez3_tu71CiKuC7YFQ")
-    zones = dns.get_zones()
-    zone_id = zones.json[0]["id"]
-
-    new_record = [
-        {
-            "name": "cuminsi.de",
-            "type": "A",
-            "content": "1.2.3.147",
-            "ttl": 3600,
-            "prio": 0,
-            "disabled": False
-        }
-    ]
-
-    print(dns.post_records(zone_id, new_record))
-    print(dns.get_zone(zone_id, record_type="A"))
