@@ -142,3 +142,15 @@ class Dns:
             tuple: (status_code, json)
         """
         return self._request("PUT", f"/zones/{zone_id}/records/{record_id}", data=record)
+
+    # Dynamic DNS
+    def post_dyndns(self, data: dict) -> tuple:
+        """Activate Dynamic Dns for a bundle of (sub)domains. The url from response will be used to update the ips of the (sub)domains. The following quota applies: 2 requests per minute per IP address.
+
+        Args:
+            data (dict): Dictionary containing domains & description
+
+        Returns:
+            tuple: (status_code, json)
+        """
+        return self._request("POST", "/dyndns", data=data)

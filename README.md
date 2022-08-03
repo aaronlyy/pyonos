@@ -13,17 +13,35 @@
 
 ## Installation
 
-### Install using pip
+Pyonos is a PyPi package and can be installed using pip.
 
 ```
 pip install pyonos
 ```
 
-### Clone the repository
+## Features
 
-```
-git clone https://github.com/aaronlyy/pyonos
-```
+- Full DNS, Domains & SSL API coverage
+- Top-Level methods for easier use of the core methods
+- DynDns Update Function
+
+### List of available methods/endpoints
+
+Method names are a combination of the http method used and their category.
+
+- Dns ([Official API Docs](https://developer.hosting.ionos.de/docs/dns))
+  - Zones
+    - get_zones: Returns list of customer zones.
+    - get_zone: Returns a customer zone.
+    - patch_zone: Replaces all records of the same name and type with the ones provided.
+    - put_zone: Replaces all records in the zone with the ones provided.
+  - Records
+    - post_records: Creates records for a customer zone.
+    - get_record: Returns the record from the customer zone with the mentioned id.
+    - delete_record: Delete a record from the customer zone.
+    - put_record: Update a record from the customer zone.
+  - DynDns
+    - post_dyndns(): Activate dyndns for a group of domains.
 
 ## Quickstart
 
@@ -47,41 +65,49 @@ Similarly, every API endpoint has its own corresponding method. Methods always r
 
 ### pyonos.Dns
 
-[IONOS DNS Documentation](https://developer.hosting.ionos.de/docs/dns)
+[Full IONOS DNS Documentation](https://developer.hosting.ionos.de/docs/dns)
 
-#### .get_zones() : Get all available zones.
+Start by importing the Dns class from pyonos.
+
+```py
+from pyonos import Dns
+```
+
+Now we need to authenticate with a prefix and a secret.
+
+```py
+from pyonos import Dns
+
+dns = Dns("abc", "def")
+```
+
+Now we use the .get_zones() method and pprint (pretty print) to get all zones.
 
 ```py
 from pyonos import Dns
 from pprint import pprint
 
-dns = Dns("prefix", "secret")
-result = dns.get_zones()
+dns = Dns("abc", "def")
+code, result = dns.get_zones()
 
-pprint(result)
-
+if code == 200:
+  pprint(result)
+else:
+  print("error")
 ```
 
-### pyonos.Domains (WORK IN PROGRESS)
+### pyonos.Domains
+
+Work in progress
 
 ### pyonos.Ssl (WORK IN PROGRESS)
 
-## Currently supported methods/endpoints
-
-Method names are a combination of the http method used and their category.
-
-- Dns ([Official API Docs](https://developer.hosting.ionos.de/docs/dns))
-  - Zones
-    - get_zones: Returns list of customer zones.
-    - get_zone: Returns a customer zone.
-    - patch_zone: Replaces all records of the same name and type with the ones provided.
-    - put_zone: Replaces all records in the zone with the ones provided.
-  - Records
-    - post_records: Creates records for a customer zone.
-    - get_record: Returns the record from the customer zone with the mentioned id.
-    - delete_record: Delete a record from the customer zone.
-    - put_record: Update a record from the customer zone.
+Work in progress
 
 ## About
 
 Made with ♥ by [aaronlyy](https://github.com/aaronlyy)
+
+## License
+
+[GNU GPL v3](./LICENSE)
