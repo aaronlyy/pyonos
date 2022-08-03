@@ -36,16 +36,16 @@ IONOS exposes [3 different API's](https://developer.hosting.ionos.de/docs).
 Every API has its corresponding & same name class that can be imported from pyonos.
 Every class needs to be authenticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
 
-Similarly, every API endpoint has its own corresponding method. Methods always return a tuple containing two items:
+Similarly, every API endpoint has its own corresponding method. Methods always return a PyonosResponse object which has two properties:
 
-- HTTP Status Code
-- JSON Response (if not available: None)
+- __.status_code__: The http status code returned
+- __.json__: the json response (if not available: None)
 
 ### DNS API
 
 [Full IONOS DNS Documentation](https://developer.hosting.ionos.de/docs/dns)
 
-Start by importing the Dns class from pyonos.
+Start by importing the __Dns__ class from pyonos.
 
 ```py
 from pyonos import Dns
@@ -59,19 +59,20 @@ from pyonos import Dns
 dns = Dns("abc", "def")
 ```
 
-Now we use the .get_zones() method and pprint (pretty print) to get all zones.
+Now we use the __.get_zones()__ method to get all zones available.
+Because __PyonosResponse__ overwrites it's \__str__ method, we can just print the response.
 
 ```py
 from pyonos import Dns
-from pprint import pprint
 
 dns = Dns("abc", "def")
-code, result = dns.get_zones()
+response = dns.get_zones()
 
-if code == 200:
-  pprint(result)
-else:
-  print("error")
+print(response)
+
+# get single properties like this:
+#   response.status_code
+#   response.json
 ```
 
 ## List of all available methods/endpoints
