@@ -36,16 +36,12 @@ IONOS exposes [3 different API's](https://developer.hosting.ionos.de/docs).
 Every API has its corresponding & same name class that can be imported from pyonos.
 Every class needs to be authenticated using a [prefix and a secret](https://developer.hosting.ionos.de/keys).
 
-```py
-from pyonos import Dns, Domains, Ssl
-```
-
 Similarly, every API endpoint has its own corresponding method. Methods always return a tuple containing two items:
 
 - HTTP Status Code
 - JSON Response (if not available: None)
 
-### pyonos.Dns
+### DNS API
 
 [Full IONOS DNS Documentation](https://developer.hosting.ionos.de/docs/dns)
 
@@ -77,14 +73,6 @@ if code == 200:
 else:
   print("error")
 ```
-
-### pyonos.Domains
-
-Work in progress
-
-### pyonos.Ssl (WORK IN PROGRESS)
-
-Work in progress
 
 ## List of all available methods/endpoints
 
